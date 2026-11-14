@@ -1,4 +1,6 @@
 import { Suspense } from "react";
+import AddBookForm from "./add-book-form";
+import AuthorOptions from "./author-options";
 import BookList from "./book-list";
 
 function BookListSkeleton() {
@@ -25,6 +27,11 @@ export default function BooksPage() {
       <h1 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
         The Bookshelf
       </h1>
+      <p className="mt-1 mb-6 text-sm text-muted">Every book in the library, and who has it.</p>
+      <AddBookForm />
+      <Suspense fallback={null}>
+        <AuthorOptions />
+      </Suspense>
       <Suspense fallback={<BookListSkeleton />}>
         <BookList />
       </Suspense>
