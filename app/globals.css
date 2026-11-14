@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
+/* Reading-room palette: warm paper, ink, forest green and brass. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f7f2e8;
+  --card: #fffdf8;
+  --ink: #2a251f;
+  --muted: #6b6152;
+  --rule: #e4d9c4;
+  --forest: #1f4d3a;
+  --brass: #9a6b1f;
+  --shelf: #1f4d3a; /* header band */
+  --on-shelf: #f7f2e8; /* text on the header band */
+  --wood: #8a5a2e; /* bookshelf plank */
+  --wood-dark: #5e3b1c;
+  --pages: #f3ead6; /* page edges of a book */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #1b1814;
+    --card: #24201b;
+    --ink: #ece5d6;
+    --muted: #a89d8a;
+    --rule: #3a342b;
+    --forest: #7fb89a;
+    --brass: #d9a95a;
+    --shelf: #15342a;
+    --on-shelf: #ece5d6;
+    --wood: #6b4524;
+    --wood-dark: #3f2913;
+    --pages: #d9cfba;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-forest: var(--forest);
+  --color-brass: var(--brass);
+  --color-shelf: var(--shelf);
+  --color-on-shelf: var(--on-shelf);
+  --color-wood: var(--wood);
+  --color-wood-dark: var(--wood-dark);
+  --color-pages: var(--pages);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* A wooden shelf plank: lighter top edge, grain, darker front lip. */
+.shelf-plank {
+  height: 14px;
+  background:
+    linear-gradient(to bottom, rgb(255 255 255 / 0.18) 0 2px, transparent 2px),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.06) 0 2px, transparent 2px 9px),
+    linear-gradient(to bottom, var(--wood), var(--wood-dark));
+  box-shadow: 0 6px 8px -4px rgb(0 0 0 / 0.35);
+}
+
+/* Page edges peeking out on the right side of a closed book. */
+.book-pages {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--pages) 0 2px,
+    color-mix(in srgb, var(--pages) 80%, #000) 2px 3px
+  );
+}
+
+/* The cloth spine: a darker fold with a highlight, on the left of the cover. */
+.book-spine {
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0.35),
+    rgb(255 255 255 / 0.12) 55%,
+    rgb(0 0 0 / 0.25)
+  );
 }
